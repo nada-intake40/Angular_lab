@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "lab2"
+    }
+  },
+  "defaultProject": "lab2",
+  "cli": {
+    "analytics": false
+  }
 }

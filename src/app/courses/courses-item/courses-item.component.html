@@ -1,0 +1,5 @@
+<li class="list-group-item"
+[ngClass]="{'list-group-item-success': course.isAvailable,
+'list-group-item-danger': !course.isAvailable }" (click)="onClick()">
+    {{course.title}}
+</li>
