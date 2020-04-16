@@ -1,10 +1,8 @@
 .main{
-    display: block;
-    border: 2px solid rgb(241, 7, 7);
-    border-radius: 5px;
-    padding: 10px;
-    min-height: 50%;
-    background-color: rgba(241, 202, 165, 0.151);
-    margin-top: 2rem;
-  }
-  
+  display: block;
+  border: 2px solid rgb(241, 7, 7);
+  border-radius: 5px;
+  padding: 10px;
+  min-height: 50%;
+  background-color: rgba(241, 202, 165, 0.151);
+}

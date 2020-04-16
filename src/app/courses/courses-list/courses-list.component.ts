@@ -1,53 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../services/courses.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
-  styleUrls: ['./courses-list.component.css']
+  styleUrls: ['./courses-list.component.scss'],
 })
 export class CoursesListComponent implements OnInit {
-
-  courses=[
-    {
-      id:1 ,
-      title:'NodeJs',
-      instructor:"Ali",
-      isAvailable:true
-    },
-    {
-      id:2 ,
-      title:'Angular',
-      instructor:"Gnedy",
-      isAvailable:true
-    },
-    {
-      id:3,
-      title:'Laravel',
-      instructor:"Ahmed",
-      isAvailable:false
-    },
-     {
-      id:1 ,
-      title:'NodeJs',
-      instructor:"Ali",
-      isAvailable:true
-    }
-
-  ]
+  courses;
   clickedCourseTitle;
-  constructor(private _courseService: CoursesService) { }
+  constructor(private _coursesService: CoursesService,
+    private _activeRoute:ActivatedRoute) {
+    console.log(_coursesService);
+  }
 
   ngOnInit(): void {
+    this._activeRoute.queryParamMap.subscribe((queryParamMap) =>{
+       const limit =queryParamMap.get('limit') || 10 ;
+      this._coursesService.getCourses({limit}).subscribe((res : any) => {
+        if(res.status)
+        {
+          this.courses=res.data;
+        }
+      });
+    });
   }
 
-  onCourseClick(data){
-    console.log(data);
-    this.clickedCourseTitle=data;
+  onCourseClick(ev) {
+    console.log(ev);
+    this.clickedCourseTitle = ev;
   }
-
-  clickCourseIten(data)
-  {
-    this._courseService.changeCourseData(data); 
+  onCourseItemClick(course) {
+    this._coursesService.changeCourseData(course);
   }
 }
